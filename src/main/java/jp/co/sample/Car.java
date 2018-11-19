@@ -1,12 +1,16 @@
 package jp.co.sample;
 
 public class Car {
-	private int speed =0;
+	private int speed = 2;
 	
 	public void hello() {
 		System.out.println("うえむーこんにちは");
 	}
 	
+	public void run() {
+		speed += 10;
+	}
+
 	public int getSpeed() {
 		return speed;
 	}
