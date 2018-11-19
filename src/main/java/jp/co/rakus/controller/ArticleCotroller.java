@@ -42,8 +42,16 @@ public class ArticleCotroller {
 		return index(model);
 	}
 	
+	/**
+	 * 記事削除機能
+	 * 
+	 * @param model モデル
+	 * @param id 記事id
+	 * @return 掲示板画面
+	 */
 	@RequestMapping("/delete")
-	public String deleteArticle(Model model) {
+	public String deleteArticle(Model model,int id) {
+		areticleRepository.deleteByIdOnceSql(id);
 		return index(model);
 	}
 }
