@@ -2,12 +2,18 @@ package jp.co.rakus.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.databind.BeanProperty;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+
 import jp.co.rakus.domain.Article;
+import jp.co.rakus.form.ArticleForm;
 import jp.co.rakus.repository.ArticleRepository;
 import jp.co.rakus.repository.CommentRepository;
 
@@ -18,6 +24,11 @@ public class ArticleCotroller {
 	private ArticleRepository areticleRepository;
 	@Autowired
 	private CommentRepository commentRepository;
+	
+	@ModelAttribute
+	public ArticleForm setUpArticleForm() {
+		return new ArticleForm();
+	}
 	
 	/**
 	 * 掲示板画面の表示.
@@ -33,7 +44,9 @@ public class ArticleCotroller {
 	}
 	
 	@RequestMapping("/insertarticle")
-	public String insertArticle(Model model) {
+	public String insertArticle(Model model,ArticleForm form) {
+		Article article = new Article(null,form.getName(),form.getContent(),null);
+		areticleRepository.insert(article);
 		return index(model);
 	}
 	
