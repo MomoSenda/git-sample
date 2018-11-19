@@ -21,7 +21,7 @@
 		<c:forEach var="article" items="${articleList}">
 			投稿者名：<c:out value="${article.name}"/><br>
 			投稿内容：<pre><c:out value="${article.content}"/></pre>
-			<form:form modelAttribute="ArticleForm" action="${pageContext.request.contextPath}/deletearticle">
+			<form:form modelAttribute="ArticleForm" action="${pageContext.request.contextPath}/delete">
 				<input type="hidden" name="id" value="<c:out value="${article.id}"/>">
 				<input type="submit" value="記事削除">
 			</form:form>
@@ -30,7 +30,7 @@
 				コメント者名：<c:out value="${comment.name}"/><br>
 				コメント内容：<pre><c:out value="${comment.content}"/></pre>
 			</c:forEach>
-			<form:form modelAttribute="CommentForm" action="${pageContext.request.contextPath}/postcomment">
+			<form:form modelAttribute="CommentForm" action="${pageContext.request.contextPath}/insertcomment">
 				<input type="hidden" name="articleId" value="<c:out value="${article.id}"/>">
 				<c:if test="${article.id == joinedCommentForm.articleId}">
 					<form:errors path="name" cssClass="error" element="div"/>
