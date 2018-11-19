@@ -32,5 +32,18 @@ public class ArticleCotroller {
 		return "bbs";
 	}
 	
+	@RequestMapping("/insertarticle")
+	public String insertArticle(Model model) {
+		return index(model);
+	}
 	
+	@RequestMapping("/insertcomment")
+	public String insertComment(Model model) {
+		return index(model);
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteArticle(Model model) {
+		return index(model);
+	}
 }
